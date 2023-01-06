@@ -1,0 +1,23 @@
+﻿@using WebApplication1.Models;
+
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+@if (_signInManager.IsSignedIn(User))
+{
+   
+    <li class="nav-item dropdown">
+        <p class="btn btn-secondary text-dark">
+            Hello @User.Identity.Name
+        </p>
+      
+            <a class="nav-link text-dark float-right btn btn-sucess" asp-action="Logout" asp-controller="Account">Logout</a>       
+     
+    </li>
+}
+else
+{
+    <a class="nav-link text-dark float-right btn btn-warning me-2" asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Login</a>
+    <a class="nav-link text-dark float-right btn btn-info" asp-area="" asp-controller="Account" asp-action="Signup">Register</a>   
+  
+}

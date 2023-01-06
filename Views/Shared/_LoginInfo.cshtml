@@ -1,0 +1,36 @@
+﻿
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+  @if (_signInManager.IsSignedIn(User))
+{
+         <li>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+         </li>
+        <li class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle text-dark" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Hello @User.Identity.Name
+                </button>
+              <div class="dropdown dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
+                <a class="dropdown-item" asp-action="changepassword" asp-controller="account">change password</a>
+            </div>
+        </li>
+}
+  else
+  {
+<li class="nav-item">
+    <a class="nav-link text-dark" href="signup">Signup</a>
+</li>
+<li class="nav-item">
+    <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Login</a>
+</li>
+  }
